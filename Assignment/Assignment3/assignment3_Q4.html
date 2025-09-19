@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <style>
+      h2 {
+        text-align: center;
+      }
+      img {
+        width: 150px;
+        height: 100px;
+      }
+      button {
+        background-color: rgb(31, 145, 31);
+        border-radius: 4px;
+        padding: 10px;
+      }
+      hr {
+        background-color: bisque;
+      }
+      #products {
+        padding: 70px;
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(236, 234, 234);
+        margin: 0px 180px;
+        /* display: space-between; */
+      }
+      .product {
+        margin: 20px;
+        padding: 30px;
+        background-color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .price {
+        color: orange;
+      }
+      .product {
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Our Products</h2>
+
+    <div id="products">
+      <div class="product">
+        <img src="./laptop.png" alt="laptop" />
+        <hr />
+        <h3>Product 1</h3>
+        <p class="description">High Quality Product That meet Your needs</p>
+        <p class="price"><b>$805.05</b></p>
+        <button>Add To Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="./laptop_bag.jpg" alt="laptop-bag" />
+        <hr />
+        <h3>Product 2</h3>
+
+        <p class="description">Excellent craftmanship and durable design</p>
+        <p class="price"><b>$11.50</b></p>
+        <button>Add To Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="./keyboard.jpg" alt="Keyboard" />
+        <hr />
+        <h3>Product 3</h3>
+
+        <p class="description">Reliable and affoardable choice for everyone</p>
+        <p class="price"><b>$12.00</b></p>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+  </body>
+</html>
