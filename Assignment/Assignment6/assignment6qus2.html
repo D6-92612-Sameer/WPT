@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+
+    <input type="number" id="numberid" placeholder="Enter Number 1">
+    <input type="number" id="numberid2" placeholder="Enter Number 2">
+
+    <br><br>
+
+    <button id="addfunction">Add</button>
+    <button id="subfunction">Subtract</button>
+    <button id="mulfunction">Multiply</button>
+    <button id="divfunction">Divide</button>
+
+    <h1>Result</h1>
+    <p>Abhi result aayega</p>
+
+    <script>
+        function getNumbers() {
+            const number1 = parseFloat(document.getElementById("numberid").value);
+            const number2 = parseFloat(document.getElementById("numberid2").value);
+            return { number1, number2 };
+        }
+
+        document.getElementById("addfunction").addEventListener("click", () => {
+            const { number1, number2 } = getNumbers();
+            document.querySelector("p").innerHTML = number1 + number2;
+        });
+
+        document.getElementById("subfunction").addEventListener("click", () => {
+            const { number1, number2 } = getNumbers();
+            document.querySelector("p").innerHTML = number1 - number2;
+        });
+
+        document.getElementById("mulfunction").addEventListener("click", () => {
+            const { number1, number2 } = getNumbers();
+            document.querySelector("p").innerHTML = number1 * number2;
+        });
+
+        document.getElementById("divfunction").addEventListener("click", () => {
+            const { number1, number2 } = getNumbers();
+            if (number2 === 0) {
+                document.querySelector("p").innerHTML = "Error: Cannot divide by zero!";
+            } else {
+                document.querySelector("p").innerHTML = number1 / number2;
+            }
+        });
+    </script>
+</body>
+
+</html>
