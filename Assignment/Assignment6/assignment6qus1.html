@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date & Greeting Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: black;
+        }
+
+        .date,
+        .greeting {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .days-left {
+            font-size: 20px;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Date & Greeting Web Page</h1>
+    <p id="date" class="date"></p>
+    <p id="greeting" class="greeting"></p>
+    <p id="daysLeft" class="days-left"></p>
+
+    <script>
+        let now = new Date();
+
+        // --- Date formatting ---
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        let dayName = days[now.getDay()];
+        let day = now.getDate();
+        let month = months[now.getMonth()];
+        let year = now.getFullYear();
+
+        document.getElementById("date").innerHTML =
+            "Today is " + dayName + ", " + day + " " + month + " " + year + ",";
+
+        // --- Greeting based on hours ---
+        let hours = now.getHours();
+        let greeting = "";
+
+        if (hours >= 5 && hours < 12) {
+            greeting = "Welcome, and Good Morning to You.";
+        } else if (hours >= 12 && hours < 17) {
+            greeting = "Welcome, and Good Afternoon to You.";
+        } else if (hours >= 17 && hours < 21) {
+            greeting = "Welcome, and Good Evening to You.";
+        } else {
+            greeting = "Welcome, and Good Night to You.";
+        }
+
+        document.getElementById("greeting").innerHTML = greeting;
+
+        // --- Days left till end of year ---
+        let endOfYear = new Date(year, 11, 31); // 31 Dec
+        let diffTime = endOfYear - now;
+        let daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        document.getElementById("daysLeft").innerHTML =
+            "Number of days left till end of year: " + daysLeft;
+    </script>
+
+</body>
+
+</html>
