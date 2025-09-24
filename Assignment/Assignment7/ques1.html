@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 7 Question 1</title>
+  <style>
+    #formtable {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      height: 100px;
+      width: 400px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="padding-right: 10px;">
+    <center><img src="images/sunbeam.png" alt=""></center>
+  </div>
+  <div id="formtable">
+    <form id="registrationForm">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="3">
+              <h1>Sunbeam Registration Form</h1>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="11" style="padding: 10px;">
+              <iframe width="400" height="200" src="https://www.youtube.com/embed/x2VI6gaOfKM"
+                title="Sunbeam Institute of IT - Pune &amp; Karad" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Name:</b></label></td>
+            <td><input type="text" id="id_name" onchange="checkAlphabets()"></td>
+            <td>
+              <p id="id_name_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>BirthDate:</b></label></td>
+            <td><input type="date" id="id_birthdate" onchange="checkBirthDate()"></td>
+            <td>
+              <p id="id_birthdate_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Email:</b></label></td>
+            <td><input type="email" id="id_email" onchange="checkEmail()"></td>
+            <td>
+              <p id="id_email_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Password:</b></label></td>
+            <td><input type="password" id="id_password" onchange="checkPassword()"></td>
+            <td>
+              <p id="id_password_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Address:</b></label></td>
+            <td><textarea id="id_address" onchange="checkAddress()"></textarea></td>
+            <td>
+              <p id="id_address_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Gender:</b></label></td>
+            <td>
+              <input type="radio" name="gender" value="male" class="class_gender" onchange="checkGender()">Male
+              <input type="radio" name="gender" value="female" class="class_gender" onchange="checkGender()">Female
+            </td>
+            <td>
+              <p id="id_gender_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Upload Photo:</b></label></td>
+            <td><input type="file" id="id_photo" onchange="checkPhoto()"></td>
+            <td>
+              <p id="id_photo_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Select your Course:</b></label></td>
+            <td>
+              <select id="id_course" onchange="checkCourse()">
+                <option value="">Select Course</option>
+                <option value="DAC">DAC</option>
+                <option value="DMC">DMC</option>
+                <option value="DITIS">DITIS</option>
+                <option value="DESD">DESD</option>
+                <option value="DBDA">DBDA</option>
+              </select>
+            </td>
+            <td>
+              <p id="id_course_err"></p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label><b>Skill Set:</b></label></td>
+            <td>
+              <input type="checkbox" name="Java" value="java" class="class_skill" onchange="checkSkill()">Java
+              <input type="checkbox" name="CPP" value="cpp" class="class_skill" onchange="checkSkill()">CPP
+              <input type="checkbox" name="OS" value="os" class="class_skill" onchange="checkSkill()">OS
+            </td>
+            <td>
+              <p id="id_skill_err"></p>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>
+              <button type="submit">Register</button>
+              <button type="reset">Clear</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+  </div>
+  <script>
+
+
+    function checkAlphabets() {
+      const name = document.getElementById("id_name").value;
+      const p1 = document.getElementById("id_name_err");
+      const alphabetsRegex = /^[a-zA-Z ]+$/;
+      if (name === "") {
+        p1.innerHTML = "Name cannot be empty.";
+        p1.style.color = "red";
+      } else if (!alphabetsRegex.test(name)) {
+        p1.innerHTML = "Only alphabets are allowed (max 10 characters).";
+        p1.style.color = "red";
+      } else if (name.length > 10) {
+        p1.innerHTML = "Name must not exceed 10 characters.";
+        p1.style.color = "red";
+      } else {
+        p1.innerText = "";
+      }
+    }
+
+    function checkBirthDate() {
+      const birthDate = document.getElementById("id_birthdate").value;
+      const p2 = document.getElementById("id_birthdate_err");
+      const date = new Date(birthDate);
+      const today = new Date();
+
+      console.log(date);
+      const age = today.getFullYear() - date.getFullYear();
+      const monthDiff = today.getMonth() - date.getMonth();
+      const dayDiff = today.getDate() - date.getDate();
+
+      if (birthDate === "") {
+        p2.innerHTML = "Birthdate cannot be empty.";
+        p2.style.color = "red";
+      } else if (
+        age < 18 ||
+        (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))
+      ) {
+        p2.innerHTML = "You must be at least 18 years old.";
+        p2.style.color = "red";
+      } else {
+        p2.innerText = "";
+      }
+    }
+
+    function checkEmail() {
+      const email = document.getElementById("id_email").value;
+      const p1 = document.getElementById("id_email_err");
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (email === "") {
+        p1.innerHTML = "Email cannot be empty.";
+        p1.style.color = "red";
+      } else if (!emailRegex.test(email)) {
+        p1.innerHTML = "Valid Email is Required";
+        p1.style.color = "red";
+      } else {
+        p1.innerText = "";
+      }
+    }
+
+    function checkPassword() {
+      const password = document.getElementById("id_password").value;
+      const p1 = document.getElementById("id_password_err");
+      const passwordRegex = /^(?=.*\d)(?=.*[#]).{9,}$/;
+
+      if (password === "") {
+        p1.innerHTML = "Password cannot be empty.";
+        p1.style.color = "red";
+      } else if (!passwordRegex.test(password)) {
+        p1.innerHTML =
+          "Password must be at least 9 characters long, contain a '#' and at least one digit.";
+        p1.style.color = "red";
+      } else {
+        p1.innerText = "";
+      }
+    }
+
+    function checkAddress() {
+      const address = document.getElementById("id_address").value;
+      const p = document.getElementById("id_address_err");
+      if (address.length === 0) {
+        p.innerHTML = "Address is Required.";
+        p.style.color = "red";
+      } else {
+        p.innerText = "";
+      }
+    }
+
+    function checkGender() {
+      const genders = document.getElementsByClassName("class_gender");
+      const p = document.getElementById("id_gender_err");
+      let isSelected = false;
+
+      for (let i = 0; i < genders.length; i++) {
+        if (genders[i].checked) {
+          isSelected = true;
+          break;
+        }
+      }
+
+      if (!isSelected) {
+        p.innerHTML = "Gender is Required.";
+        p.style.color = "red";
+      } else {
+        p.innerText = "";
+      }
+    }
+
+    function checkPhoto() {
+      const photo = document.getElementById("id_photo").value;
+      const p = document.getElementById("id_photo_err");
+      if (photo === "") {
+        p.innerHTML = "Photo is Required.";
+        p.style.color = "red";
+      } else {
+        p.innerText = "";
+      }
+    }
+
+    function checkCourse() {
+      const course = document.getElementById("id_course").value;
+      const p = document.getElementById("id_course_err");
+      if (course === "") {
+        p.innerHTML = "Please select a course.";
+        p.style.color = "red";
+      } else {
+        p.innerText = "";
+      }
+    }
+
+    function checkSkill() {
+      const skills = document.getElementsByClassName("class_skill");
+      const p = document.getElementById("id_skill_err");
+      let isChecked = false;
+
+      for (let i = 0; i < skills.length; i++) {
+        if (skills[i].checked) {
+          isChecked = true;
+          break;
+        }
+      }
+
+      if (!isChecked) {
+        p.innerHTML = "Please select at least one skill.";
+        p.style.color = "red";
+      } else {
+        p.innerText = "";
+      }
+    }
+
+    document
+      .getElementById("registrationForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        checkValidation();
+      });
+
+    function checkValidation() {
+      checkAlphabets();
+      checkBirthDate();
+      checkEmail();
+      checkPassword();
+      checkAddress();
+      checkGender();
+      checkPhoto();
+      checkCourse();
+      checkSkill();
+
+      let errors = document.querySelectorAll("p");
+      let hasError = false;
+      errors.forEach((err) => {
+        if (err.innerText !== "") hasError = true;
+      });
+
+      if (!hasError) {
+        alert("Form Submitted Successfully!");
+        document.getElementById("registrationForm").submit();
+      }
+    }
+  </script>
+</body>
+
+</html>
