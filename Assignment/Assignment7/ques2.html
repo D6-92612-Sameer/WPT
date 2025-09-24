@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 7 Question 2</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <h1>Enter Employee Names</h1>
+        <input type="text" placeholder="Enter employee name" id="id_input">
+        <button type="submit" onclick="addProduct()">Add Name</button>
+        <button type="submit" onclick="sort_display()">Sort & Display</button>
+        <hr>
+
+        <h2>Employee Name</h2>
+        <p id="plist"></p>
+
+    </div>
+    <script>
+        const employees = [];
+        const maxEmployees = 6;
+
+        function addProduct() {
+            const name = $('#id_input').val();
+            if (employees.length >= maxEmployees) {
+                alert("You have already entered 6 names");
+                return;
+            }
+            if (name) {
+                employees.push(name);
+                $('#plist').append(`<ul><li>${name}</li></ul>`);
+                $('#id_input').val('');
+            } else {
+                alert("Please enter a valid name");
+            }
+        }
+
+        function sort_display() {
+            if (employees.length === 0) {
+                alert("No names to sort");
+                return;
+            }
+            const sortedEmployees = employees.sort();
+            $('#plist').html('');
+            for(name of sortedEmployees)
+                $('#plist').append(`<ul><li>${name}</li></ul>`);
+            }
+    </script>
+</body>
+
+</html>
